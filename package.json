@@ -1,6 +1,6 @@
 {
   "name": "browserify-declarative",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Declarative API for browserify bundling and code injection",
   "main": "js/src/index.js",
   "scripts": {

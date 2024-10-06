@@ -37,6 +37,11 @@ function browserifyDeclarative(conf) {
                 .bundle(function (err, src) {
                 if (err) {
                     reject(err);
+                    return undefined;
+                }
+                if (src === undefined) {
+                    reject("Source if undefined");
+                    return undefined;
                 }
                 var content = src.toString();
                 if (conf.tokensToReplace) {
@@ -47,6 +52,7 @@ function browserifyDeclarative(conf) {
                     require("fs").writeFile(conf.saveBundlePath, content, function (err) {
                         if (!err) {
                             resolve(content);
+                            return content;
                         }
                         reject(err);
                     });

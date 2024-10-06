@@ -20,6 +20,11 @@ export function browserifyDeclarative(
                 .bundle((err, src) => {
                     if(err) {
                         reject(err)
+                        return undefined
+                    }
+                    if(src === undefined) {
+                        reject("Source if undefined")
+                        return undefined
                     }
                     let content = src.toString()
                     if(conf.tokensToReplace) {
@@ -33,6 +38,7 @@ export function browserifyDeclarative(
                         require("fs").writeFile(conf.saveBundlePath, content, (err) => {
                             if(!err) {
                                 resolve(content)
+                                return content
                             }
                             reject(err)
                         })
