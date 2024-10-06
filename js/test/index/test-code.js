@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.result = void 0;
+var test_code2_1 = require("./test-code2");
+console.log("bundled script executing..");
+var m2 = "MY_MARK_2";
+exports.result = { m1: (0, test_code2_1.addExpression)("MY_MARK_1") };
+exports.result.m2 = m2;
+exports.result.m3 = "MY_MARK_3";
+console.log(exports.result);
