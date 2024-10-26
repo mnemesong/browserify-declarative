@@ -2,6 +2,7 @@ export type BrowserifyDeclarativeConf = {
     srcPath: string;
     tokensToReplace?: Record<string, any>;
     saveBundlePath?: string;
+    mode?: "browser" | "node";
 };
 /**
  * Bundles script with all requirements use browserify

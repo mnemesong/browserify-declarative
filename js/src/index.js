@@ -30,7 +30,11 @@ var browserify = __importStar(require("browserify"));
  * returns promise of result code string
  */
 function browserifyDeclarative(conf) {
-    var b = browserify.default();
+    var opts = {};
+    if (conf.mode === "node") {
+        opts.node = true;
+    }
+    var b = browserify.default(opts);
     return new Promise(function (resolve, reject) {
         try {
             b.add(conf.srcPath)

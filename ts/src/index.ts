@@ -3,7 +3,8 @@ import * as browserify from "browserify"
 export type BrowserifyDeclarativeConf = {
     srcPath: string,
     tokensToReplace?: Record<string, any>, //substrings in code to replace (for data injection)
-    saveBundlePath?: string //if anfter bundling needs to save file (with extension)
+    saveBundlePath?: string //if anfter bundling needs to save file (with extension),
+    mode?: "browser"|"node"
 }
 
 /**
@@ -13,7 +14,11 @@ export type BrowserifyDeclarativeConf = {
 export function browserifyDeclarative(
     conf: BrowserifyDeclarativeConf
 ): Promise<string> {
-    const b = browserify.default()
+    const opts: browserify.Options = {}
+    if(conf.mode === "node") {
+        opts.node = true
+    }
+    const b = browserify.default(opts)
     return new Promise((resolve, reject) => {
         try {
             b.add(conf.srcPath)
